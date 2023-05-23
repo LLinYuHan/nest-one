@@ -8,13 +8,13 @@ export interface Cat {
 
 @Injectable()
 export class CatsService {
-    private readonly cats: string[] = [];
+    private readonly cats: Cat[] = [];
 
-    create(cat: string) {
+    create(cat: Cat) {
         this.cats.push(cat);
     }
 
-    findAll(): string[] {
+    findAll(): Cat[] {
         return this.cats;
     }
 }

@@ -10,7 +10,7 @@ export class UsersService {
     constructor(@InjectModel('User') private userModel: Model<UserDocument>) {}
 
     async create(@Body() createUserDto: CreateUserDto) {
-        await this.userModel.create(createUserDto)
+        await this.userModel.create(createUserDto);
         return 'This action adds a new user';
     }
 
@@ -22,7 +22,10 @@ export class UsersService {
         return this.userModel.findById(id);
     }
 
-    async update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
+    async update(
+        @Param('id') id: number,
+        @Body() updateUserDto: UpdateUserDto
+    ) {
         await this.userModel.findByIdAndUpdate(id, updateUserDto);
         return `This action updates a #${id} user`;
     }
