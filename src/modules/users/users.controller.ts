@@ -11,7 +11,6 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ParseIntPipe } from 'src/pipe/parse-int.pipe';
-import { Configuration, OpenAIApi } from 'openai';
 
 @Controller('users')
 export class UsersController {
@@ -24,19 +23,6 @@ export class UsersController {
 
     @Get()
     async findAll() {
-        const configuration = new Configuration({
-            apiKey: process.env.OPENAI_API_KEY
-        });
-
-        const openai = new OpenAIApi(configuration);
-        const response = await openai.createCompletion({
-            model: 'text-davinci-003',
-            prompt: 'Say this is a test',
-            temperature: 0,
-            max_tokens: 7
-        });
-
-        console.log('response', response.data.choices[0].text);
         return this.usersService.findAll();
     }
 
